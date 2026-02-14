@@ -10,7 +10,6 @@ landing-page/node_modules
 */.next
 landing-page/.next
 out
-
 # Environment
 .env
 .env.local
