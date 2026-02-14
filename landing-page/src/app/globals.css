@@ -1,0 +1,927 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background: #050505;
+    --foreground: #ffffff;
+    --primary: #00e676;
+    /* Vibrant WhatsApp Green */
+    --primary-dim: rgba(0, 230, 118, 0.1);
+    --secondary: #111;
+    --text-muted: #888;
+    --font-outfit: 'Outfit', sans-serif;
+    --font-space: 'Space Grotesk', sans-serif;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(20, 20, 20, 0.6);
+}
+
+html,
+body {
+    height: 100%;
+    font-family: var(--font-outfit);
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-space);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #bbf7d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.green-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(60px);
+}
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 2.5rem;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 230, 118, 0.1);
+    border-color: rgba(0, 230, 118, 0.3);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #000;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background: #00c853;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+}
+
+.grid-comparison {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+    .grid-comparison {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.list-number {
+    font-family: var(--font-space);
+    font-weight: 700;
+    color: var(--primary);
+    opacity: 0.5;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+}
+
+.glass-header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    font-family: var(--font-space);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-logo span {
+    color: var(--primary);
+}
+
+/* Robot/Bot styles */
+.bot-icon {
+    width: 60px;
+    height: 60px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -30px;
+    left: 2rem;
+    border: 4px solid var(--background);
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.bot-sad {
+    color: #ef5350;
+}
+
+.bot-happy {
+    color: var(--primary);
+}
+
+:root {
+    --tile-hover: rgba(0, 230, 118, 0.1);
+    --tile-border: rgba(255, 255, 255, 0.1);
+    /* Dark mode border */
+}
+
+/* Tiles Component Styles */
+.tiles-container {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    /* Rows stack vertically */
+    overflow: hidden;
+}
+
+.tile-row {
+    display: flex;
+    /* Columns align horizontally */
+    border-left: 1px solid var(--tile-border);
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.tile {
+    border-right: 1px solid var(--tile-border);
+    border-top: 1px solid var(--tile-border);
+    position: relative;
+    background: transparent;
+}
+
+.tile-sm {
+    width: 2rem;
+    height: 2rem;
+}
+
+.tile-md {
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+.tile-lg {
+    width: 3rem;
+    height: 3rem;
+}
+
+@media (min-width: 768px) {
+    .tile-md {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .tile-lg {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+/* WhatsApp Mockup Styles */
+.phone-mockup {
+    width: 320px;
+    height: 650px;
+    background: #000;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 0 0 2px #333, 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 8px solid #1a1a1a;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background: #1a1a1a;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 100;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #0b141a;
+    /* WhatsApp Dark Mode BG */
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.wa-header {
+    background: #1f2c34;
+    padding: 35px 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a3942;
+}
+
+.wa-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wa-avatar {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #00e676, #00a853);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wa-avatar-img {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.wa-contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wa-name {
+    color: #e9edef;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.wa-status {
+    color: #8696a0;
+    font-size: 12px;
+}
+
+.wa-header-right {
+    display: flex;
+    gap: 15px;
+}
+
+.wa-chat-area {
+    flex: 1;
+    padding: 20px 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-size: 300px;
+    background-blend-mode: overlay;
+    background-color: #0b141a;
+}
+
+.wa-message {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wa-message-user {
+    background: #005c4b;
+    color: #e9edef;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+}
+
+.wa-message-bot {
+    background: #202c33;
+    color: #e9edef;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+}
+
+.wa-time {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 4px;
+}
+
+.wa-input-area {
+    background: #1f2c34;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wa-input-plus {
+    color: #8696a0;
+    font-size: 24px;
+}
+
+.wa-input-box {
+    flex: 1;
+    height: 35px;
+    background: #2a3942;
+    border-radius: 20px;
+}
+
+.wa-input-mic {
+    width: 40px;
+    height: 40px;
+    background: #00a884;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Workflow Diagram Styles */
+.workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 0;
+    flex-wrap: wrap;
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.workflow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+    width: 120px;
+}
+
+.workflow-center {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2rem;
+}
+
+.workflow-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    background: #111;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.workflow-step:hover .workflow-icon {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.2);
+    transform: scale(1.1);
+}
+
+.workflow-main-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #111;
+    border: 2px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    z-index: 10;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 230, 118, 0.3);
+}
+
+.workflow-label {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 500;
+    text-align: center;
+}
+
+.workflow-label-main {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.workflow-arrow {
+    flex: 1;
+    height: 2px;
+    background: #333;
+    position: relative;
+    min-width: 50px;
+    max-width: 80px;
+}
+
+.workflow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.workflow-satellites {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.workflow-satellite-wrapper {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+}
+
+.workflow-satellite {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.satellite-orbiter {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 40px;
+    height: 240px;
+    /* span full height to pivot around center */
+    margin-left: -20px;
+    transform-origin: center 120px;
+    /* Pivot from the center of the 240px circle */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.satellite-icon {
+    width: 40px;
+    height: 40px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.satellite-label {
+    white-space: nowrap;
+    font-size: 0.75rem;
+    color: #aaa;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+
+/* WhatsApp Mockup Styles */
+.phone-mockup {
+    width: 320px;
+    height: 650px;
+    background: #000;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 0 0 2px #333, 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 8px solid #1a1a1a;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background: #1a1a1a;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 100;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #0b141a;
+    /* WhatsApp Dark Mode BG */
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.wa-header {
+    background: #1f2c34;
+    padding: 35px 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a3942;
+}
+
+.wa-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wa-avatar {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #00e676, #00a853);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wa-avatar-img {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.wa-contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wa-name {
+    color: #e9edef;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wa-status {
+    color: #8696a0;
+    font-size: 12px;
+}
+
+.wa-header-right {
+    display: flex;
+    gap: 15px;
+}
+
+.wa-chat-area {
+    flex: 1;
+    padding: 20px 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-size: 300px;
+    background-blend-mode: overlay;
+    background-color: #0b141a;
+}
+
+.wa-message {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wa-message-user {
+    background: #005c4b;
+    color: #e9edef;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+}
+
+.wa-message-bot {
+    background: #202c33;
+    color: #e9edef;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+}
+
+.wa-time {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 4px;
+}
+
+.wa-input-area {
+    background: #1f2c34;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wa-input-plus {
+    color: #8696a0;
+    font-size: 24px;
+}
+
+.wa-input-box {
+    flex: 1;
+    height: 35px;
+    background: #2a3942;
+    border-radius: 20px;
+}
+
+.wa-input-mic {
+    width: 40px;
+    height: 40px;
+    background: #00a884;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Workflow Diagram Styles */
+.workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 0;
+    flex-wrap: wrap;
+}
+
+.workflow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.workflow-center {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    background: #111;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.workflow-step:hover .workflow-icon {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.2);
+    transform: scale(1.1);
+}
+
+.workflow-main-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #111;
+    border: 2px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    z-index: 10;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 230, 118, 0.3);
+}
+
+.workflow-label {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 500;
+}
+
+.workflow-label-main {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.workflow-arrow {
+    flex: 1;
+    height: 2px;
+    background: #333;
+    position: relative;
+    min-width: 50px;
+    max-width: 100px;
+}
+
+.workflow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.workflow-satellites {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.workflow-satellite {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    /* Orbit diameter */
+    height: 240px;
+    margin-top: -120px;
+    margin-left: -120px;
+    transform-origin: center;
+    /* animation handled by framer motion usually, but here just positioning */
+}
+
+.workflow-satellite .satellite-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.workflow-satellite .satellite-label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.75rem;
+    color: #aaa;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
